@@ -2,14 +2,19 @@ import discord
 from discord.ext import commands
 import os
 from dotenv import load_dotenv
+from pathlib import Path
 
 load_dotenv()
 
 token = os.getenv("DISCORD_TOKEN")
 
+p = Path('.')
+py_files = list(p.glob('cogs/**/*.py'))
+cogs = [str(f).replace('.py', '').replace('\\', '.').replace('/', '.').replace('cogs.', '') for f in py_files]
+
 class MonBot(commands.Bot):
     async def setup_hook(self):
-        for extension in ['commandes']:
+        for extension in cogs:
             await self.load_extension(f'cogs.{extension}')
 
 intents = discord.Intents.all()

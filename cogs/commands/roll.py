@@ -3,7 +3,7 @@ import discord
 from discord import app_commands
 from discord.ext import commands
 
-class CommandesCog(commands.Cog):
+class RollCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
@@ -13,4 +13,4 @@ class CommandesCog(commands.Cog):
         await interaction.response.send_message(f'{interaction.user.name} lance un dé et obtient : {result}')
 
 async def setup(bot):
-    await bot.add_cog(CommandesCog(bot))
+    await bot.add_cog(RollCog(bot))
