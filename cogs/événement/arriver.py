@@ -8,10 +8,9 @@ class ArriverCog(commands.Cog):
     @commands.Cog.listener()
     async def on_member_join(self, member : discord.Member):
         avatar = member.avatar
-        guild = discord.Guild
-        channel = guild.get_channel(guild.id,1562765027327483934) # Erreur ici channel non vérifier
+        channel = member.guild.get_channel(1562765027327483934)
 
-        channel.send(avatar)
+        await channel.send(avatar)
         return
 
 async def setup(bot):
